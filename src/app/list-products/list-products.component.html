@@ -1,0 +1,27 @@
+<div class="container">
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col"><h4>Product</h4></th>
+                <th scope="col"><h4>Available Quantity</h4></th>
+                <th scope="col"><h4>#</h4></th>
+            </tr>
+        </thead>
+        <tbody>
+            <ng-container *ngFor="let product of listProducts;let i = index">
+                <tr *ngIf="product.productName!=null && product.availableQuantity>=1 && product.productName.length>1">
+                    <td>
+                        <h2>{{product.productName}}</h2>
+                    </td>
+                    <td>{{product.availableQuantity}}</td>
+                    <td>
+                        <button [routerLink]="['/order-products', i]" class="btn btn-primary">
+                            Order
+                        </button>
+                    </td>
+                </tr>
+            </ng-container>
+        </tbody>
+    </table>
+</div>
