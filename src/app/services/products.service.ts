@@ -3,8 +3,9 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Products } from '../models/Model';
+import {environment} from 'src/environments/environment.prod';
 
-const url = "https://uiexercise.onemindindia.com/api/Product";
+const url = environment.apiUrl+"/Product";
 
 
 @Injectable({
