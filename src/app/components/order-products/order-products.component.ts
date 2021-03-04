@@ -16,6 +16,8 @@ export class OrderProductsComponent implements OnInit {
   orderProducts?: Orders;
   listProducts: Products[] = [];
   product;
+  neededQuantity;
+
 
   constructor(private activatedRoute: ActivatedRoute,
     private ordersService: OrdersService,
@@ -26,34 +28,30 @@ export class OrderProductsComponent implements OnInit {
   ngOnInit(): void {
     this.listProducts = this.productsService.getList();
     this.id = this.activatedRoute.snapshot.params.id;
-    // console.log(this.activatedRoute.snapshot.params.id);
     this.product=this.listProducts.filter(product=>product.productId===this.id)
-    console.log(this.product[0].productName);
+   
 
   }
 
-  onSubmit(f: NgForm) {
+  onSubmit(formValue: NgForm) {
     
     
     const product = {    
       productId:this.product[0].productId,
       orderId: "ed8f5d51-3718-4b57-90eb-b9604d0a91e2",
       customerId: "bbd6b16e-e30b-467a-bc6a-b8aec876dff8",
-      ...f.value
+      neededQuantity:this.neededQuantity
     }
-    if (this.product[0].availableQuantity >= f.value.neededQuantity){
+    if (this.product[0].availableQuantity >= formValue.value.neededQuantity){
       this.ordersService.orderProduct(product)
       .subscribe(
         (result) => {
-          // console.log(product)
           this.orderProducts = product;
-          // console.log(this.orderProducts)
           swal.fire(" ","Order Placed",'success');
-          f.reset()
-          // console.log(result)
+          formValue.reset();
         },
         (error) => {
-          swal.fire(" ","Order not placed",'error')
+          swal.fire(" ","Order not placed",'error');
         }
       )
     }
@@ -67,5 +65,3 @@ export class OrderProductsComponent implements OnInit {
 
 
 }
-
-// "bbd6b16e-e30b-467a-bc6a-b8aec876dff8"

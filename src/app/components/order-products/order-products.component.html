@@ -17,20 +17,20 @@
                     </tbody>
                 </table>
                 <br />
-
             </div>
         </div>
 
-        <form #f="ngForm" (ngSubmit)="onSubmit(f)" ngNativeValidate>
+        <form #form="ngForm" (ngSubmit)="onSubmit(form)" ngNativeValidate>
             <div class="form-group">
                 <label for="neededQuantity">Quantity:</label><br>
                 <input type="number" id="neededQuantity" name="neededQuantity" placeholder="Enter the quantity" min="1"
-                    [max]="product[0].availableQuantity" ngModel class="form-control"
+                    [max]="product[0].availableQuantity" class="form-control" [(ngModel)]="neededQuantity"
                     oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
                     maxlength="5"
                     required><br><br>
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button routerLink="/list-products" class="btn btn-danger mr-3">Back</button>
+            <button type="submit" class="btn btn-primary mr-3">Submit</button>
         </form>
 
     </div>

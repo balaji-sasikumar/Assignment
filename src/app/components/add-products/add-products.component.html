@@ -1,5 +1,5 @@
 <div class="container">
-    <form #f="ngForm" (ngSubmit)="onSubmit(f)" ngNativeValidate>
+    <form #formValue="ngForm" (ngSubmit)="onSubmit(formValue)" ngNativeValidate>
         <div class="form-group">
             <label for="productName">Product name:</label><br>
             <input type="text" id="productName" name="productName" class="form-control"
@@ -15,8 +15,9 @@
 
         </div>
 
+        <button routerLink="/list-products" class="btn btn-danger mr-3">Back</button>
 
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary mr-3">Submit</button>
 
     </form>
 </div>
