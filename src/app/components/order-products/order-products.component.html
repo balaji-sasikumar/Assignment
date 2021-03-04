@@ -11,8 +11,8 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>{{listProducts[index].productName}}</td>
-                            <td>{{listProducts[index].availableQuantity}} </td>
+                            <td>{{product[0].productName}}</td>
+                            <td>{{product[0].availableQuantity}} </td>
                         </tr>
                     </tbody>
                 </table>
@@ -25,7 +25,7 @@
             <div class="form-group">
                 <label for="neededQuantity">Quantity:</label><br>
                 <input type="number" id="neededQuantity" name="neededQuantity" placeholder="Enter the quantity" min="1"
-                    [max]="listProducts[index].availableQuantity" ngModel class="form-control"
+                    [max]="product[0].availableQuantity" ngModel class="form-control"
                     oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
                     maxlength="5"
                     required><br><br>

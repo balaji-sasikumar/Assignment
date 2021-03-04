@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {NgForm} from '@angular/forms';
-import { ProductsService } from '../products.service';
+import { ProductsService } from '../../services/products.service';
 import swal from 'sweetalert2';
 
 
@@ -16,16 +16,16 @@ export class AddProductsComponent implements OnInit {
   ) {
    }
 
-  onSubmit(f:NgForm){
-    this.productsService.addProduct(f.value)
+  onSubmit(formValue:NgForm){
+    this.productsService.addProduct(formValue.value)
       .subscribe(
         (result)=>{
           swal.fire(" ","Product Added",'success');
           console.log(result)
-          f.reset()
+          formValue.reset()
         },
         (error)=>{
-          swal.fire(" ","Please check the input field",'error')
+          swal.fire(" ","Please check the input field",'error')//exception use
 
         }
       )

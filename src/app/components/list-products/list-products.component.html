@@ -16,7 +16,7 @@
                     </td>
                     <td>{{product.availableQuantity}}</td>
                     <td>
-                        <button [routerLink]="['/order-products', i]" class="btn btn-primary">
+                        <button [routerLink]="['/order-products', product.productId]" class="btn btn-primary">                         
                             Order
                         </button>
                     </td>
