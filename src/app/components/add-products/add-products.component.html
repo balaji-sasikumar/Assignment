@@ -8,14 +8,11 @@
         <div class="form-group">
             <label for="availableQuantity">Quantity:</label><br>
             <input type="number" id="availableQuantity" name="availableQuantity" class="form-control" min="1"
-                placeholder="Quantity" ngModel
-                oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-                maxlength="5"
-                required><br><br>
+                placeholder="Quantity" ngModel required [(ngModel)]="availableQuantity"  (input)="sliceInput(5)"  ><br><br>
 
         </div>
 
-        <button routerLink="/list-products" class="btn btn-danger mr-3">Back</button>
+        <button routerLink="/list-products" type='button' class="btn btn-danger mr-3" (click)="onBack()" >Back</button>
 
         <button type="submit" class="btn btn-primary mr-3">Submit</button>
 

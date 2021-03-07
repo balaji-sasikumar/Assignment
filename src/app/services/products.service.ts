@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+// import { map } from 'rxjs/operators';
 import { Products } from '../models/Model';
 import {environment} from 'src/environments/environment.prod';
 
@@ -12,7 +12,7 @@ const url = environment.apiUrl+"/Product";
   providedIn: 'root'
 })
 export class ProductsService {
-  listProducts: Products[] = [];//data
+  // listProducts: Products[] = [];//data
 
   constructor(
     private http: HttpClient
@@ -20,10 +20,7 @@ export class ProductsService {
 
 
   getData(): Observable<Products[]> {
-    return this.http.get<Products[]>(url).pipe(map( data => {
-      this.listProducts = data;
-      return data;
-    }));
+    return this.http.get<Products[]>(url);
   }
 
   addProduct(data): Observable<any> {
@@ -31,9 +28,9 @@ export class ProductsService {
   }
 
 
-  getList(){
-    return this.listProducts;
-  }
+  // getList(){
+  //   return this.listProducts;
+  // }
 }
 
 

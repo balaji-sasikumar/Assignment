@@ -19,17 +19,14 @@
                 <br />
             </div>
         </div>
-
-        <form #form="ngForm" (ngSubmit)="onSubmit(form)" ngNativeValidate>
+        <form  #formValue="ngForm" (ngSubmit)="onSubmit(formValue)">
             <div class="form-group">
                 <label for="neededQuantity">Quantity:</label><br>
-                <input type="number" id="neededQuantity" name="neededQuantity" placeholder="Enter the quantity" min="1"
-                    [max]="product[0].availableQuantity" class="form-control" [(ngModel)]="neededQuantity"
-                    oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-                    maxlength="5"
-                    required><br><br>
+                    <input type="number" id="neededQuantity" name="neededQuantity" placeholder="Enter the quantity"
+                     class="form-control" [(ngModel)]="neededQuantity"   (input)="sliceInput(product[0].availableQuantity)"
+                    ><br><br>
             </div>
-            <button routerLink="/list-products" class="btn btn-danger mr-3">Back</button>
+            <button routerLink="/list-products" type="button" class="btn btn-danger mr-3" (click)="onBack()">Back</button>
             <button type="submit" class="btn btn-primary mr-3">Submit</button>
         </form>
 

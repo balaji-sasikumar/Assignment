@@ -11,10 +11,19 @@ import swal from 'sweetalert2';
 })
 export class AddProductsComponent implements OnInit {
 
+  availableQuantity;
   constructor(
     private productsService:ProductsService
   ) {
    }
+
+   sliceInput(max) {
+    if (String(this.availableQuantity).length > max){
+      this.availableQuantity = String(this.availableQuantity).slice(0, max);
+      swal.fire(" ", "Please provide valid input", 'error');
+    }
+    
+  }
 
   onSubmit(formValue:NgForm){
     this.productsService.addProduct(formValue.value)
@@ -30,6 +39,11 @@ export class AddProductsComponent implements OnInit {
         }
       )
 
+  }
+
+  onBack(){
+    swal.fire("Are you sure,Your entry will be deleted");
+    
   }
 
   ngOnInit(): void {
