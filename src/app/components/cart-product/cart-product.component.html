@@ -1,24 +1,35 @@
 <div class="container">
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th scope="col">Number</th>
-                <th scope="col">Product Name</th>
-                <th scope="col">Quantity</th>
-                <th scope="col">Invoice Date</th>
-                <th scope="col">Delivered Date</th>
-            </tr>
-        </thead>
-        <tbody>
-            <ng-container *ngFor="let order of orderList;let i=index">
-                <tr>
-                    <td>{{i+1}}</td>
-                    <td>{{order.product.productName}} </td>
-                    <td>{{order.quantity}}</td>
-                    <td>{{order.invoiceDate| date : format}}</td> 
-                    <td>{{order.deliveredDate| date : format}} </td>
-                </tr>
-            </ng-container>
-        </tbody>
-    </table>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col"><h4>Number</h4></th>
+        <th scope="col"><h4>Product Name</h4></th>
+        <th scope="col"><h4>Quantity</h4></th>
+        <th scope="col"><h4>Invoice Date</h4></th>
+        <th scope="col"><h4>Delivered Date</h4></th>
+        <th scope="col"><h4>Total Price</h4></th>
+        <th scope="col"><h4>#</h4></th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngFor="let order of orderList; let i = index">
+        <tr>
+          <td>{{ i+1 }}</td>
+          <td>{{ order.product.productName }}</td>
+          <td>{{ order.quantity }}</td>
+          <td>{{ order.invoiceDate | date: format }}</td>
+          <td>{{ order.deliveredDate | date: format }}</td>
+          <td>{{ order.quantity * order.product.price }}</td>
+          <td>
+            <button
+              class="btn btn-danger mr-1"
+              (click)="deleteData(order.orderId)"
+            >
+              Delete
+            </button>
+          </td>
+        </tr>
+      </ng-container>
+    </tbody>
+  </table>
 </div>
