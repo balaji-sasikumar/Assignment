@@ -14,7 +14,7 @@ export class OrderProductsComponent implements OnInit {
   orderProducts?: Orders;
   listProducts;
   product;
-  neededQuantity;
+  neededQuantity=1;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -24,7 +24,7 @@ export class OrderProductsComponent implements OnInit {
 
   ngOnInit(): void {
     this.id = this.activatedRoute.snapshot.params.id;
-    console.log(this.id);
+    // console.log(this.id);
 
     this.productsService.getData();
     this.productsService.productList.subscribe((response) => {
@@ -39,26 +39,32 @@ export class OrderProductsComponent implements OnInit {
     Swal.fire('Are you sure,Your entry will be deleted');
   }
 
-  sliceInput(max) {
-    if (this.neededQuantity > max) {
-      Swal.fire(' ', 'Please give less than the available quantity', 'error');
+  sliceInput(max,event) {
+    // console.log(event)
+    if(event.keyCode!=8){
+      if (this.neededQuantity > max ) {
+        Swal.fire(' ', 'Please give less than the available quantity', 'error');
+        this.neededQuantity=1;
+      }
+      else if(this.neededQuantity<1){
+        Swal.fire(' ', 'Please give the quantity greater than 1', 'error');
+        this.neededQuantity=1;
+      }
     }
   }
 
   onSubmit() {
     const product = {
       productId: this.product[0].productId,
-      orderId: 'ed8f5d51-3718-4b57-90eb-b9604d0a91e2',
-      customerId: 'bbd6b16e-e30b-467a-bc6a-b8aec876dff8',
       quantity: this.neededQuantity,
     };
     this.ordersService.orderProduct(product).subscribe(
       (result) => {
-        Swal.fire(' ', 'Order Placed', 'success');
+        Swal.fire('', 'Order Placed', 'success');
         this.neededQuantity=1
       },
       (error) => {
-        console.log(error);
+        // console.log(error);
         Swal.fire(' ', 'Order not placed', 'error');
       }
     );

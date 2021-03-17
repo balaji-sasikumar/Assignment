@@ -31,14 +31,14 @@
         placeholder="Enter the quantity"
         class="form-control"
         [(ngModel)]="neededQuantity"
-        (input)="sliceInput(product[0].availableQuantity)"
+        onkeypress="return event.charCode >= 48 && event.charCode <= 57"
+        (keyup)="sliceInput(product[0].availableQuantity,$event)"
       /><br /><br />
     </div>
     <button
       routerLink="/list-products"
       type="button"
       class="btn btn-danger mr-3"
-      (click)="onBack()"
     >
       Back
     </button>

@@ -1,25 +1,55 @@
 <div class="container">
-    
-        <div class="form-group">
-            <label for="productName">Product name:</label><br>
-            <input type="text" id="productName" name="productName" class="form-control"
-                placeholder="Enter the Product name" ngModel [(ngModel)]="formValue.productName" maxlength="25" required><br>
-        </div>
-        <div class="form-group">
-            <label for="availableQuantity">Quantity:</label><br>
-            <input type="number" id="availableQuantity" name="availableQuantity" class="form-control" min="1"
-                placeholder="Quantity" ngModel required [(ngModel)]="formValue.availableQuantity"  (input)="sliceInput(5)"  ><br><br>
+  <div class="form-group">
+    <label for="productName">Product name:</label><br />
+    <input
+      type="text"
+      id="productName"
+      name="productName"
+      class="form-control"
+      onkeypress="return (event.charCode >= 49 && event.charCode <= 122) || event.keyCode==32 "
+      placeholder="Enter the Product name"
+      [(ngModel)]="formValue.productName"
+      maxlength="25"
+    /><br />
+  </div>
+  <div class="form-group">
+    <label for="availableQuantity">Quantity:</label><br />
+    <input
+      type="number"
+      id="availableQuantity"
+      name="availableQuantity"
+      class="form-control"
+      min="1"
+      placeholder="Quantity"
+      [(ngModel)]="formValue.availableQuantity"
+      onkeypress="return event.charCode >= 48 && event.charCode <= 57"
+      (input)="sliceInput(formValue.availableQuantity,5)"
+    /><br /><br />
+  </div>
+  <div class="form-group">
+    <label for="price">Price</label><br />
+    <input
+      type="number"
+      id="price"
+      name="price"
+      class="form-control"
+      min="1"
+      onkeypress="return event.charCode >= 48 && event.charCode <= 57"
+      placeholder="Enter the Price"
+      [(ngModel)]="formValue.price"
+      (input)="sliceInput(formValue.price,7)"
+    /><br /><br />
+  </div>
 
-        </div>
-        <div class="form-group">
-            <label for="price">Price</label><br>
-            <input type="number" id="price" name="price" class="form-control" min="1"
-                placeholder="Enter the Price" ngModel [(ngModel)]="formValue.price" required (input)="sliceInput(7)"  ><br><br>
+  <button routerLink="/list-products" type="button" class="btn btn-danger mr-3">
+    Back
+  </button>
 
-        </div>
-
-        <button routerLink="/list-products" type='button' class="btn btn-danger mr-3">Back</button>
-
-        <button type="button" class="btn btn-primary mr-3" (click)="onSubmit(formValue)">Submit</button>
-
+  <button
+    type="button"
+    class="btn btn-primary mr-3"
+    (click)="onSubmit(formValue)"
+  >
+    Submit
+  </button>
 </div>

@@ -25,4 +25,9 @@ export class OrdersService {
   orderProduct(data): Observable<any>{
     return this.http.post(orderUrl,data)
   }
+  deleteProduct(id): Observable<any> {
+    var endpoint = orderUrl + "/" + id
+    // console.log(endpoint)
+    return this.http.delete(endpoint)
+  }
 }

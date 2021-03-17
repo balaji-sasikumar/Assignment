@@ -28,13 +28,13 @@ export class ProductsService {
 
   deleteProduct(id): Observable<any> {
     var endpoint = url + "/" + id
-    console.log(endpoint)
+    // console.log(endpoint)
     return this.http.delete(endpoint)
   }
 
   updateProduct(id, data): Observable<any> {
     var endpoint = url + "/" + id
-    console.log(endpoint)
+    // console.log(endpoint)
     return this.http.put(endpoint, data)
   }
 }

@@ -4,3 +4,6 @@ tbody h2{
 .container{
     margin-top: 40px;
 }
+td,th{
+    text-align: center;
+}
