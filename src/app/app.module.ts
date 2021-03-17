@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
@@ -10,6 +10,7 @@ import { OrderProductsComponent } from './components/order-products/order-produc
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { ProductsService } from './services/products.service';
 import { OrdersService } from './services/orders.service';
+import { CartProductComponent } from './components/cart-product/cart-product.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { OrdersService } from './services/orders.service';
     AddProductsComponent,
     ListProductsComponent,
     OrderProductsComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    CartProductComponent
   ],
   imports: [
     BrowserModule,

@@ -1,36 +1,42 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-// import { map } from 'rxjs/operators';
+import { Observable, Subject } from 'rxjs';
+
 import { Products } from '../models/Model';
-import {environment} from 'src/environments/environment.prod';
+import { environment } from 'src/environments/environment.prod';
 
-const url = environment.apiUrl+"/Product";
-
+const url = environment.apiUrl + "/Product";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductsService {
-  // listProducts: Products[] = [];//data
+  productList = new Subject<Products[]>();
 
   constructor(
     private http: HttpClient
   ) { }
 
 
-  getData(): Observable<Products[]> {
-    return this.http.get<Products[]>(url);
+  getData() {
+    this.http.get<Products[]>(url).subscribe(productList => this.productList.next(productList));
   }
 
   addProduct(data): Observable<any> {
     return this.http.post(url, data)
   }
 
+  deleteProduct(id): Observable<any> {
+    var endpoint = url + "/" + id
+    console.log(endpoint)
+    return this.http.delete(endpoint)
+  }
 
-  // getList(){
-  //   return this.listProducts;
-  // }
+  updateProduct(id, data): Observable<any> {
+    var endpoint = url + "/" + id
+    console.log(endpoint)
+    return this.http.put(endpoint, data)
+  }
 }
 
 

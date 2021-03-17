@@ -1,34 +1,49 @@
 <div class="container">
-    <div *ngIf="listProducts">
-        <div class="card">
-            <div class="card-body">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">Product name</th>
-                            <th scope="col">Available Quantity</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>{{product[0].productName}}</td>
-                            <td>{{product[0].availableQuantity}} </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <br />
-            </div>
-        </div>
-        <form  #formValue="ngForm" (ngSubmit)="onSubmit(formValue)">
-            <div class="form-group">
-                <label for="neededQuantity">Quantity:</label><br>
-                    <input type="number" id="neededQuantity" name="neededQuantity" placeholder="Enter the quantity"
-                     class="form-control" [(ngModel)]="neededQuantity"   (input)="sliceInput(product[0].availableQuantity)"
-                    ><br><br>
-            </div>
-            <button routerLink="/list-products" type="button" class="btn btn-danger mr-3" (click)="onBack()">Back</button>
-            <button type="submit" class="btn btn-primary mr-3">Submit</button>
-        </form>
-
+  <div *ngIf="listProducts">
+    <div class="card">
+      <div class="card-body">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Product name</th>
+              <th scope="col">Available Quantity</th>
+              <th scope="col">Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{{ product[0].productName }}</td>
+              <td>{{ product[0].availableQuantity }}</td>
+              <td>{{ product[0].price }}</td>
+            </tr>
+          </tbody>
+        </table>
+        <br />
+      </div>
     </div>
+
+    <div class="form-group">
+      <label for="neededQuantity">Quantity:</label><br />
+      <input
+        type="number"
+        id="neededQuantity"
+        name="neededQuantity"
+        placeholder="Enter the quantity"
+        class="form-control"
+        [(ngModel)]="neededQuantity"
+        (input)="sliceInput(product[0].availableQuantity)"
+      /><br /><br />
+    </div>
+    <button
+      routerLink="/list-products"
+      type="button"
+      class="btn btn-danger mr-3"
+      (click)="onBack()"
+    >
+      Back
+    </button>
+    <button type="submit" class="btn btn-primary mr-3" (click)="onSubmit()">
+      Submit
+    </button>
+  </div>
 </div>

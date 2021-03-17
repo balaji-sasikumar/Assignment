@@ -5,6 +5,7 @@
             <tr>
                 <th scope="col"><h4>Product</h4></th>
                 <th scope="col"><h4>Available Quantity</h4></th>
+                <th scope="col"><h4>Price</h4></th>
                 <th scope="col"><h4>#</h4></th>
             </tr>
         </thead>
@@ -15,9 +16,16 @@
                         <h2>{{product.productName}}</h2>
                     </td>
                     <td>{{product.availableQuantity}}</td>
+                    <td>{{product.price}}</td>
                     <td>
-                        <button [routerLink]="['/order-products', product.productId]" class="btn btn-primary">                         
+                        <button [routerLink]="['/order-products', product.productId]" class="btn btn-primary mr-1">                         
                             Order
+                        </button>
+                        <button [routerLink]="['/update-product', product.productId]" class="btn btn-success mr-1">                         
+                            Update
+                        </button>
+                        <button class="btn btn-danger mr-1" (click)="deleteData(product.productId)">                         
+                            Delete
                         </button>
                     </td>
                 </tr>

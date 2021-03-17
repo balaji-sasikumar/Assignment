@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {NgForm} from '@angular/forms';
 import { ProductsService } from '../../services/products.service';
-import swal from 'sweetalert2';
+import Swal from 'sweetalert2';
+import { ActivatedRoute } from '@angular/router';
+
 
 
 @Component({
@@ -10,43 +11,82 @@ import swal from 'sweetalert2';
   styleUrls: ['./add-products.component.css']
 })
 export class AddProductsComponent implements OnInit {
-
-  availableQuantity;
+  isUpdate=false;
+  id="";listProducts;product;
   constructor(
-    private productsService:ProductsService
+    private productsService:ProductsService,private activatedRoute: ActivatedRoute
   ) {
    }
-
+  formValue={
+    productName:"",
+    availableQuantity:1,
+    price:0
+  }
    sliceInput(max) {
-    if (String(this.availableQuantity).length > max){
-      this.availableQuantity = String(this.availableQuantity).slice(0, max);
-      swal.fire(" ", "Please provide valid input", 'error');
+    if (String(this.formValue.availableQuantity).length > max){
+      this.formValue.availableQuantity = Number(String(this.formValue.availableQuantity).slice(0, max));
+      Swal.fire(" ", "Please provide valid input", 'error');
     }
     
   }
 
-  onSubmit(formValue:NgForm){
-    this.productsService.addProduct(formValue.value)
+  onSubmit(formValue){
+    if(!this.isUpdate){
+      this.productsService.addProduct(formValue)
       .subscribe(
         (result)=>{
-          swal.fire(" ","Product Added",'success');
+          Swal.fire(" ","Product Added",'success');
           console.log(result)
-          formValue.reset()
+          // location.reload()
         },
         (error)=>{
-          swal.fire(" ","Please check the input field",'error')//exception use
-
+          Swal.fire(" ","Please check the input field",'error')//exception use
         }
       )
+    }
+    else{
+      this.productsService.updateProduct(this.id,formValue)
+      .subscribe(
+        (result)=>{
+          Swal.fire(" ","Product Updated",'success');
+          console.log(result)
+          // location.reload()
+        },
+        (error)=>{
+          Swal.fire(" ","Please check the input field ",'error')//exception use
+        }
+      )
+    }
+    this.formValue={
+      productName:"",
+      availableQuantity:1,
+      price:0
+    }
 
   }
 
   onBack(){
-    swal.fire("Are you sure,Your entry will be deleted");
+    Swal.fire("Are you sure,Your entry will be deleted");
     
   }
 
   ngOnInit(): void {
+    this.id = this.activatedRoute.snapshot.params.id;
+    if(this.id){
+      this.isUpdate=true;
+      console.log(this.id)
+      this.productsService.getData();
+      this.productsService.productList.subscribe(productList=>{
+        this.listProducts = productList;
+        this.product = this.listProducts.filter(product => product.productId === this.id);
+        this.formValue={
+          productName:this.product[0].productName,
+          availableQuantity:this.product[0].availableQuantity,
+          price:this.product[0].price
+        }
+      })
+    }
+
   }
 
 }
