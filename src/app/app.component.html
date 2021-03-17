@@ -1,6 +1,6 @@
 <div class="container">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
-        <a class="navbar-brand" href="#">Shopping Website</a>
+        <a class="navbar-brand" routerLink="/list-products">Shopping Website</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -10,14 +10,19 @@
                 <li class="nav-item">
                     <a class="nav-link" routerLink="/list-products" routerLinkActive="active" >List of Products</a>
                 </li>
-                <li class="nav-item">
+            <li class="nav-item">
                     <a routerLink="/add-product" class="nav-link" routerLinkActive="active">Add Product</a>
                 </li>
     
-            </ul>
+            
+            <li class="nav-item">
+                <a routerLink="/cart-product" class="nav-link" routerLinkActive="active">Cart</a>
+            </li>
+
+        </ul>
         </div>
     </nav>
 </div>
 
-
+<br><br>
 <router-outlet></router-outlet>
