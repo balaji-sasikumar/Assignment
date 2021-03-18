@@ -1,15 +1,2 @@
-/* :root{
-    --primarycolor:#d9d9d9;
-    --headercolor:black;
-    --datacolor:#f8eee7
-}
-body{
-    background-color:var(--primarycolor);
-}
-
-th{
-    color: var(--headercolor);
-}
-td,label{
-    color: var(--datacolor) !important;
-} */
+@import "../node_modules/ag-grid-community/dist/styles/ag-grid.css";
+@import "../node_modules/ag-grid-community/dist/styles/ag-theme-alpine.css";
