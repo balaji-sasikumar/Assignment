@@ -1,9 +1,10 @@
-tbody h2{
-    font-size: 20px;
+.container {
+  margin-top: 40px;
 }
-.container{
-    margin-top: 40px;
+th.mat-header-cell,
+td.mat-cell {
+  border-bottom-width: 0px;
+  text-align: center;
+  padding-top:1rem;
 }
-td,th{
-    text-align: center;
-}
+

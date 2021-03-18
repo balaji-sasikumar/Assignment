@@ -32,7 +32,7 @@
         class="form-control"
         [(ngModel)]="neededQuantity"
         onkeypress="return event.charCode >= 48 && event.charCode <= 57"
-        (keyup)="sliceInput(product[0].availableQuantity,$event)"
+        (keyup)="sliceInput(product[0].availableQuantity, $event)"
       /><br /><br />
     </div>
     <button
@@ -40,10 +40,10 @@
       type="button"
       class="btn btn-danger mr-3"
     >
-      Back
+    <i class="bi bi-backspace"> Back</i>
     </button>
     <button type="submit" class="btn btn-primary mr-3" (click)="onSubmit()">
-      Submit
+      <i class="bi bi-plus-circle"> Order</i>
     </button>
   </div>
 </div>
