@@ -20,6 +20,8 @@
     "@angular/platform-browser": "~11.2.0",
     "@angular/platform-browser-dynamic": "~11.2.0",
     "@angular/router": "~11.2.0",
+    "ag-grid-angular": "^25.1.0",
+    "ag-grid-community": "^25.1.0",
     "rxjs": "~6.6.0",
     "sweetalert2": "^10.15.5",
     "tslib": "^2.0.0",

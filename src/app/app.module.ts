@@ -13,6 +13,7 @@ import { OrdersService } from './services/orders.service';
 import { CartProductComponent } from './components/cart-product/cart-product.component';
 import { Material } from 'src/assets/packages/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AgGridModule } from 'ag-grid-angular';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ReactiveFormsModule,
     Material,
     BrowserAnimationsModule,
+    AgGridModule.withComponents([]),
   ],
   providers: [ProductsService, OrdersService],
   bootstrap: [AppComponent],

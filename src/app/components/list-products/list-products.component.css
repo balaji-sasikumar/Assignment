@@ -8,3 +8,11 @@ td.mat-cell {
   padding-top:1rem;
 }
 
+th.mat-header-cell{
+  padding: 1rem;
+  padding-left: 4rem;
+}
+
+th.mat-header-cell:last-child{
+  padding-left: 0rem;
+}

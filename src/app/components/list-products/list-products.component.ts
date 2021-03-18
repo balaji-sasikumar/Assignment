@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { ProductsService } from '../../services/products.service';
 import { Products } from '../../models/Model';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -8,8 +10,7 @@ import Swal from 'sweetalert2';
   templateUrl: './list-products.component.html',
   styleUrls: ['./list-products.component.css'],
 })
-export class ListProductsComponent implements OnInit {
-  listProducts: Products[];
+export class ListProductsComponent implements OnInit, AfterViewInit {
   displayedColumns: string[] = [
     'number',
     'productName',
@@ -18,27 +19,36 @@ export class ListProductsComponent implements OnInit {
     'action',
   ];
 
-  constructor(private productsService: ProductsService) {}
-  getData() {
+  listProducts;
+
+  constructor(private productsService: ProductsService) {
     this.productsService.getData();
-    this.productsService.productList.subscribe((response) => {
-      // console.log(response);
-      this.listProducts = response;
+    this.productsService.productList.subscribe((response: Products[]) => {
+      this.listProducts = new MatTableDataSource(response);
     });
   }
+
+  @ViewChild(MatSort) sort: MatSort;
+
+  ngOnInit(): void {
+    this.ngAfterViewInit();
+  }
+
+  ngAfterViewInit() {
+    this.listProducts.sort = this.sort;
+  }
+
   deleteData(id) {
     this.productsService.deleteProduct(id).subscribe(
       (response) => {
         Swal.fire(' ', 'Product Deleted', 'success');
-        this.ngOnInit();
+        setTimeout(() => {
+          location.reload();
+        }, 3000);
       },
       (error) => {
         Swal.fire(' ', 'Product cannot be deleted', 'error');
       }
     );
-  }
-
-  ngOnInit(): void {
-    this.getData();
   }
 }

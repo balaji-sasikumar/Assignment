@@ -1,36 +1,64 @@
 <div class="container">
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th scope="col"><h4>Number</h4></th>
-        <th scope="col"><h4>Product Name</h4></th>
-        <th scope="col"><h4>Quantity</h4></th>
-        <th scope="col"><h4>Invoice Date</h4></th>
-        <th scope="col"><h4>Delivered Date</h4></th>
-        <th scope="col"><h4>Total Price</h4></th>
-        <th scope="col"><h4>#</h4></th>
-      </tr>
-    </thead>
-    <tbody>
-      <ng-container *ngFor="let order of orderList; let i = index">
-        <tr>
-          <td>{{ i+1 }}</td>
-          <td>{{ order.product.productName }}</td>
-          <td>{{ order.quantity }}</td>
-          <td>{{ order.invoiceDate | date: format }}</td>
-          <td>{{ order.deliveredDate | date: format }}</td>
-          <td>{{ order.quantity * order.product.price }}</td>
-          <td>
-            <button
-              class="btn btn-danger mr-1"
-              (click)="deleteData(order.orderId)"
-            >
-            <i class="bi bi-trash"> Remove</i>
+  <table
+    mat-table
+    [dataSource]="orderList"
+    matSort
+    class="mat-elevation-z8 table table-striped"
+  >
+    <ng-container matColumnDef="number">
+      <th mat-header-cell *matHeaderCellDef>No.</th>
+      <td mat-cell *matCellDef="let i = index">{{ i + 1 }}</td>
+    </ng-container>
+    <ng-container matColumnDef="productName">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Product Name</th>
+      <td mat-cell *matCellDef="let order">{{ order.product.productName }}</td>
+    </ng-container>
+    <ng-container matColumnDef="quantity">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Quantity</th>
+      <td mat-cell *matCellDef="let order">
+        {{ order.quantity }}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="invoiceDate">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Invoice Date</th>
+      <td mat-cell *matCellDef="let order">
+        {{ order.invoiceDate | date: format }}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="deliveredDate">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        Expected Delivery Date
+      </th>
+      <td mat-cell *matCellDef="let order">
+        {{ order.deliveredDate | date: format }}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="totalPrice">
+      <th mat-header-cell *matHeaderCellDef>Total Price</th>
+      <td mat-cell *matCellDef="let order">
+        {{ order.quantity * order.product.price }}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef>#</th>
+      <td mat-cell *matCellDef="let order">
+        <button class="btn btn-danger m-1" (click)="deleteData(order.orderId)">
+          <i class="bi bi-trash"> Delete</i>
+        </button>
+      </td>
+    </ng-container>
 
-            </button>
-          </td>
-        </tr>
-      </ng-container>
-    </tbody>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
   </table>
 </div>
+
+<!-- <div class="container">
+  <ag-grid-angular
+    style="width: 100%; height: 500px"
+    class="ag-theme-alpine"
+    [rowData]="orderList"
+    [columnDefs]="columnDefs"
+  >
+  </ag-grid-angular>
+</div> -->
