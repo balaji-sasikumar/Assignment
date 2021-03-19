@@ -60,7 +60,14 @@ export class OrderProductsComponent implements OnInit {
     };
     this.ordersService.orderProduct(product).subscribe(
       (result) => {
-        Swal.fire('', 'Order Placed', 'success');
+        Swal.fire({
+          title: ' ',
+          text: 'Order Placed',
+          icon:'success',
+        }).then((result)=>{
+          if(result)
+            location.reload()
+        })
         this.neededQuantity=1
       },
       (error) => {
@@ -68,8 +75,6 @@ export class OrderProductsComponent implements OnInit {
         Swal.fire(' ', 'Order not placed', 'error');
       }
     );
-    setTimeout(() => {
-      location.reload();
-    }, 5000);
+    
   }
 }
