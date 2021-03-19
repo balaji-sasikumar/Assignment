@@ -41,7 +41,14 @@ export class AddProductsComponent implements OnInit {
       if (!this.isUpdate) {
         this.productsService.addProduct(formValue).subscribe(
           (result) => {
-            Swal.fire(' ', 'Product Added', 'success');
+            Swal.fire({
+              title: ' ',
+              text: 'Product Added',
+              icon:'success',
+            }).then((result)=>{
+              if(result)
+                location.reload()
+            })
             // console.log(result);
             // location.reload()
           },
@@ -52,7 +59,14 @@ export class AddProductsComponent implements OnInit {
       } else {
         this.productsService.updateProduct(this.id, formValue).subscribe(
           (result) => {
-            Swal.fire(' ', 'Product Updated', 'success');
+            Swal.fire({
+              title: ' ',
+              text: 'Product Updated',
+              icon:'success',
+            }).then((result)=>{
+              if(result)
+                location.reload()
+            })
             // console.log(result);
             // location.reload()
           },

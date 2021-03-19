@@ -41,10 +41,13 @@ export class ListProductsComponent implements OnInit, AfterViewInit {
   deleteData(id) {
     this.productsService.deleteProduct(id).subscribe(
       (response) => {
-        Swal.fire(' ', 'Product Deleted', 'success');
-        setTimeout(() => {
-          location.reload();
-        }, 3000);
+        Swal.fire({
+          title: ' ',
+          text: 'Product Deleted',
+          icon: 'success',
+        }).then((result) => {
+          if (result) location.reload();
+        });
       },
       (error) => {
         Swal.fire(' ', 'Product cannot be deleted', 'error');

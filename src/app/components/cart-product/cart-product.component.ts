@@ -49,12 +49,15 @@ export class CartProductComponent implements OnInit, AfterViewInit {
   deleteData(id) {
     this.ordersService.deleteProduct(id).subscribe(
       (response) => {
-        console.log(response);
-        console.log(id);
-        Swal.fire(' ', 'Order Deleted', 'success');
-        setTimeout(() => {
-          location.reload();
-        }, 3000);
+        Swal.fire({
+          title: ' ',
+          text: 'Order Deleted',
+          icon:'success',
+        }).then((result)=>{
+          if(result)
+            location.reload()
+        })
+        
       },
       (error) => {
         console.log(error);
