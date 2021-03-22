@@ -22,11 +22,9 @@ export class AddProductsComponent implements OnInit {
     availableQuantity: 1,
     price: 1,
   };
-  sliceInput(data,max) {
+  sliceInput(data, max) {
     if (String(data).length > max) {
-      data = Number(
-        String(data).slice(0, max)
-      );
+      data = Number(String(data).slice(0, max));
       Swal.fire(' ', 'Please provide valid input', 'error');
       this.formValue = {
         productName: '',
@@ -37,20 +35,15 @@ export class AddProductsComponent implements OnInit {
   }
 
   onSubmit(formValue) {
-    if(this.formValue.productName!==''){
+    if (this.formValue.productName !== '') {
       if (!this.isUpdate) {
         this.productsService.addProduct(formValue).subscribe(
           (result) => {
             Swal.fire({
               title: ' ',
               text: 'Product Added',
-              icon:'success',
-            }).then((result)=>{
-              if(result)
-                location.reload()
-            })
-            // console.log(result);
-            // location.reload()
+              icon: 'success',
+            });
           },
           (error) => {
             Swal.fire(' ', 'Please check the input field', 'error'); //exception use
@@ -62,22 +55,16 @@ export class AddProductsComponent implements OnInit {
             Swal.fire({
               title: ' ',
               text: 'Product Updated',
-              icon:'success',
-            }).then((result)=>{
-              if(result)
-                location.reload()
-            })
-            // console.log(result);
-            // location.reload()
+              icon: 'success',
+            });
           },
           (error) => {
             Swal.fire(' ', 'Please check the input field ', 'error'); //exception use
           }
         );
       }
-    }
-    else{
-      Swal.fire("","Please provide data to the input field","error")
+    } else {
+      Swal.fire('', 'Please provide data to the input field', 'error');
     }
     this.formValue = {
       productName: '',
