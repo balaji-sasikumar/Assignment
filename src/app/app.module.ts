@@ -14,6 +14,7 @@ import { CartProductComponent } from './components/cart-product/cart-product.com
 import { Material } from 'src/assets/packages/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AgGridModule } from 'ag-grid-angular';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { AgGridModule } from 'ag-grid-angular';
     Material,
     BrowserAnimationsModule,
     AgGridModule.withComponents([]),
+    Ng2SearchPipeModule
   ],
   providers: [ProductsService, OrdersService],
   bootstrap: [AppComponent],
