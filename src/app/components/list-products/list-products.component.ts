@@ -35,6 +35,7 @@ export class ListProductsComponent implements OnInit, AfterViewInit {
     this.productsService.getData();
     this.productsService.productList.subscribe((response: Products[]) => {
       this.listProducts = new MatTableDataSource(response);
+      this.listProducts.sortingDataAccessor = (data, sortHeaderId) => data[sortHeaderId].toLocaleLowerCase();
       this.listProducts.sort = this.sort;
       this.listProducts.paginator = this.paginator;
       this.listProducts.filterPredicate = (data: any, filter: string) =>
@@ -59,8 +60,9 @@ export class ListProductsComponent implements OnInit, AfterViewInit {
     );
   }
   applyFilter(filterValue) {
-    filterValue = filterValue.trim(); // Remove whitespace
-    filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
-    this.listProducts.filter = filterValue;
+    // filterValue = filterValue.trim(); // Remove whitespace
+    // filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
+    this.listProducts.filter = filterValue.trim().toLowerCase();
+    // console.log(this.listProducts)
   }
 }

@@ -20,7 +20,7 @@ export class AddProductsComponent implements OnInit {
   formValue = {
     productName: '',
     availableQuantity: 1,
-    price: 1,
+    price: 100,
   };
   sliceInput(data, max) {
     if (String(data).length > max) {
@@ -29,13 +29,13 @@ export class AddProductsComponent implements OnInit {
       this.formValue = {
         productName: '',
         availableQuantity: 1,
-        price: 1,
+        price: 100,
       };
     }
   }
 
   onSubmit(formValue) {
-    if (this.formValue.productName !== '') {
+    if (this.formValue.productName.trim() !== '' && this.formValue.productName.length>=4 ){
       if (!this.isUpdate) {
         this.productsService.addProduct(formValue).subscribe(
           (result) => {
@@ -64,12 +64,12 @@ export class AddProductsComponent implements OnInit {
         );
       }
     } else {
-      Swal.fire('', 'Please provide data to the input field', 'error');
+      Swal.fire('', 'Please provide valid data to Product Name field', 'error');
     }
     this.formValue = {
       productName: '',
       availableQuantity: 1,
-      price: 1,
+      price: 100,
     };
   }
 
