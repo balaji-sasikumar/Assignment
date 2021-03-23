@@ -56,7 +56,9 @@ export class AddProductsComponent implements OnInit {
   validate(event) {
     console.log(event);
     return (
-      (event.charCode >= 49 && event.charCode <= 122) || event.charCode == 32 || event.charCode!=64
+      (event.charCode >= 49 && event.charCode <= 122) ||
+      event.charCode == 32 ||
+      event.charCode != 64
     );
   }
   onSubmit(formValue) {
@@ -104,6 +106,4 @@ export class AddProductsComponent implements OnInit {
   onBack() {
     Swal.fire('Are you sure,Your entry will be deleted');
   }
-
-  
 }
