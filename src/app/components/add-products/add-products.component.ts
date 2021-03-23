@@ -2,27 +2,46 @@ import { Component, OnInit } from '@angular/core';
 import { ProductsService } from '../../services/products.service';
 import Swal from 'sweetalert2';
 import { ActivatedRoute } from '@angular/router';
-
+import { Products } from '../../models/Model';
 @Component({
   selector: 'app-add-products',
   templateUrl: './add-products.component.html',
   styleUrls: ['./add-products.component.css'],
 })
 export class AddProductsComponent implements OnInit {
-  isUpdate = false;
-  id = '';
-  listProducts;
-  product;
+  isUpdate: boolean = false;
+  id: string = '';
+  listProducts: Products[];
+  product: Products[];
   constructor(
     private productsService: ProductsService,
     private activatedRoute: ActivatedRoute
   ) {}
+  ngOnInit(): void {
+    this.id = this.activatedRoute.snapshot.params.id;
+    if (this.id) {
+      this.isUpdate = true;
+      // console.log(this.id);
+      this.productsService.getData();
+      this.productsService.productList.subscribe((productList) => {
+        this.listProducts = productList;
+        this.product = this.listProducts.filter(
+          (product) => product.productId === this.id
+        );
+        this.formValue = {
+          productName: this.product[0].productName,
+          availableQuantity: this.product[0].availableQuantity,
+          price: this.product[0].price,
+        };
+      });
+    }
+  }
   formValue = {
     productName: '',
     availableQuantity: 1,
     price: 100,
   };
-  sliceInput(data, max) {
+  sliceInput(data: number, max: number) {
     if (String(data).length > max) {
       data = Number(String(data).slice(0, max));
       Swal.fire(' ', 'Please provide valid input', 'error');
@@ -33,9 +52,18 @@ export class AddProductsComponent implements OnInit {
       };
     }
   }
-
+  // /^[a-z\d ]+$/i
+  validate(event) {
+    console.log(event);
+    return (
+      (event.charCode >= 49 && event.charCode <= 122) || event.charCode == 32 || event.charCode!=64
+    );
+  }
   onSubmit(formValue) {
-    if (this.formValue.productName.trim() !== '' && this.formValue.productName.length>=4 ){
+    if (
+      formValue.productName.trim() !== '' &&
+      formValue.productName.length >= 4
+    ) {
       if (!this.isUpdate) {
         this.productsService.addProduct(formValue).subscribe(
           (result) => {
@@ -77,23 +105,5 @@ export class AddProductsComponent implements OnInit {
     Swal.fire('Are you sure,Your entry will be deleted');
   }
 
-  ngOnInit(): void {
-    this.id = this.activatedRoute.snapshot.params.id;
-    if (this.id) {
-      this.isUpdate = true;
-      // console.log(this.id);
-      this.productsService.getData();
-      this.productsService.productList.subscribe((productList) => {
-        this.listProducts = productList;
-        this.product = this.listProducts.filter(
-          (product) => product.productId === this.id
-        );
-        this.formValue = {
-          productName: this.product[0].productName,
-          availableQuantity: this.product[0].availableQuantity,
-          price: this.product[0].price,
-        };
-      });
-    }
-  }
+  
 }

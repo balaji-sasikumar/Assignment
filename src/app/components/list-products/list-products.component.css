@@ -5,14 +5,15 @@ th.mat-header-cell,
 td.mat-cell {
   border-bottom-width: 0px;
   text-align: center;
-  padding-top:1rem;
+  padding-top: 1rem;
 }
 
-th.mat-header-cell{
+th.mat-header-cell {
   padding: 1rem;
   padding-left: 4rem;
+  font-size: large;
 }
 
-th.mat-header-cell:last-child{
+th.mat-header-cell:last-child {
   padding-left: 0rem;
 }
