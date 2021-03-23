@@ -49,8 +49,11 @@ export class CartProductComponent implements OnInit, AfterViewInit {
       this.orderList = new MatTableDataSource(response);
       this.orderList.sort = this.sort;
       this.orderList.paginator = this.paginator;
-      this.orderList.filterPredicate = (data: any, filter: string) =>
-        data.product.productName.indexOf(filter) != -1;
+      this.orderList.filterPredicate = (data: any, filter: string) =>{
+        console.log(data)
+        return data.product.productName.indexOf(filter) != -1;
+
+      }
     });
   }
   deleteData(id) {

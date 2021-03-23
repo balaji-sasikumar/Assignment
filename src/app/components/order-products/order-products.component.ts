@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { OrdersService } from '../../services/orders.service';
 import { ProductsService } from '../../services/products.service';
-import { Orders } from '../../models/Model';
+import { Orders, Products } from '../../models/Model';
 import Swal from 'sweetalert2';
 @Component({
   selector: 'app-order-products',
@@ -10,11 +10,11 @@ import Swal from 'sweetalert2';
   styleUrls: ['./order-products.component.css'],
 })
 export class OrderProductsComponent implements OnInit {
-  id;
-  orderProducts?: Orders;
-  listProducts;
-  product;
-  neededQuantity=1;
+  id:string;
+  orderProducts: Orders;
+  listProducts:Products[];
+  product:Products[];
+  neededQuantity:number=1;
 
   constructor(
     private activatedRoute: ActivatedRoute,
