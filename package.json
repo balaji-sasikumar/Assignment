@@ -21,8 +21,6 @@
     "@angular/platform-browser": "~11.2.0",
     "@angular/platform-browser-dynamic": "~11.2.0",
     "@angular/router": "~11.2.0",
-    "ag-grid-angular": "^25.1.0",
-    "ag-grid-community": "^25.1.0",
     "mat-table-filter": "^1.2.5",
     "ng2-search-filter": "^0.5.1",
     "rxjs": "~6.6.0",

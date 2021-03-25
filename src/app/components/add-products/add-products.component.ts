@@ -53,13 +53,11 @@ export class AddProductsComponent implements OnInit {
     }
   }
   // /^[a-z\d ]+$/i
-  validate(event) {
-    console.log(event);
-    return (
-      (event.charCode >= 49 && event.charCode <= 122) ||
-      event.charCode == 32 ||
-      event.charCode != 64
-    );
+  validate() {
+    var pat=/^[a-z\d ]+$/i;
+    console.log(pat.test(this.formValue.productName))
+    return pat.test(this.formValue.productName)
+
   }
   onSubmit(formValue) {
     if (

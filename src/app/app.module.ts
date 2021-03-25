@@ -13,7 +13,6 @@ import { OrdersService } from './services/orders.service';
 import { CartProductComponent } from './components/cart-product/cart-product.component';
 import { Material } from 'src/assets/packages/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AgGridModule } from 'ag-grid-angular';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 @NgModule({
@@ -33,7 +32,6 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     ReactiveFormsModule,
     Material,
     BrowserAnimationsModule,
-    AgGridModule.withComponents([]),
     Ng2SearchPipeModule
   ],
   providers: [ProductsService, OrdersService],

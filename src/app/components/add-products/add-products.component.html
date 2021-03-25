@@ -6,7 +6,7 @@
       id="productName"
       name="productName"
       class="form-control"
-      (keypress)="validate($event)"
+      (input)="validate()"
       placeholder="Enter the Product name"
       [(ngModel)]="formValue.productName"
       maxlength="25"
