@@ -1,15 +1,19 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule }   from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AddProductsComponent } from './add-products/add-products.component';
-import { ListProductsComponent } from './list-products/list-products.component';
-import { OrderProductsComponent } from './order-products/order-products.component';
-import { RouterModule } from '@angular/router';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { ProductsService } from './products.service';
+import { AddProductsComponent } from './components/add-products/add-products.component';
+import { ListProductsComponent } from './components/list-products/list-products.component';
+import { OrderProductsComponent } from './components/order-products/order-products.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { ProductsService } from './services/products.service';
+import { OrdersService } from './services/orders.service';
+import { CartProductComponent } from './components/cart-product/cart-product.component';
+import { Material } from 'src/assets/packages/material';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 @NgModule({
   declarations: [
@@ -17,24 +21,20 @@ import { ProductsService } from './products.service';
     AddProductsComponent,
     ListProductsComponent,
     OrderProductsComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    CartProductComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    RouterModule.forRoot([
-      
-      {path:'',redirectTo:'list-products',pathMatch:'full'},
-      {path:'list-products',component:ListProductsComponent},
-      {path:'add-product',component:AddProductsComponent},
-      {path:'order-products/:id',component:OrderProductsComponent},
-      {path:'**',component:PageNotFoundComponent},
-      
-    ])
+    ReactiveFormsModule,
+    Material,
+    BrowserAnimationsModule,
+    Ng2SearchPipeModule
   ],
-  providers: [ProductsService],
-  bootstrap: [AppComponent]
+  providers: [ProductsService, OrdersService],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

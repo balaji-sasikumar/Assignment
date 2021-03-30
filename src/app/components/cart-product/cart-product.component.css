@@ -1,0 +1,22 @@
+table{
+  width: 100%;
+}
+.container {
+  margin-top: 40px;
+}
+th.mat-header-cell,
+td.mat-cell {
+  border-bottom-width: 0px;
+  text-align: center;
+  padding-top: 1rem;
+}
+
+th.mat-header-cell {
+  padding: 1rem;
+  padding-left: 2rem;
+  font-size: large;
+
+}
+th.mat-header-cell:last-child {
+  padding-left: 0rem;
+}
