@@ -56,7 +56,7 @@ export class AddProductsComponent implements OnInit {
   validate() {
     var pat=/^[a-z\d ]+$/i;
     console.log(pat.test(this.formValue.productName))
-    return pat.test(this.formValue.productName)
+    return !pat.test(this.formValue.productName)
 
   }
   onSubmit(formValue) {
